@@ -1,3 +1,4 @@
+<?
 private function setProperties(array $shipment, Order $order)
     {
         $properties = array ();
@@ -58,7 +59,12 @@ private function setProperties(array $shipment, Order $order)
                 $properties[$this->options['propsAddress']] = $shipment['label']['address'];
             }
         }
-      
+        
+        if ($this->options['model'] == 'dsm') {
+            $modifDate = date('Y-m-d h:i:s', strtotime($shipment['handover']));
+            $this->options['systemPropShipmentDate'] = $modifDate;
+        }
+
         $result = $propertyCollection->setValuesFromPost(array(
             'PROPERTIES' => $properties
         ), array ());
