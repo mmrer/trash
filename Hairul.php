@@ -62,7 +62,7 @@ private function setProperties(array $shipment, Order $order)
         
         if ($this->options['model'] == 'dsm') {
             $modifDate = date('Y-m-d h:i:s', strtotime($shipment['handover']));
-            $this->options['systemPropShipmentDate'] = $modifDate;
+            $properties[$this->options['systemPropShipmentDate']] = $modifDate;
         }
 
         $result = $propertyCollection->setValuesFromPost(array(
